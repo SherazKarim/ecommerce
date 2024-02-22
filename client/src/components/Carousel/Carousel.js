@@ -31,15 +31,23 @@ export const Carousel = () => {
         setTransform({ x: moveX, y: moveY });
     };
 
-    useEffect(() => {
-        AOS.init({
-          duration: 2000,
-        });
-      },[SwiperSlide]);
+
+      useEffect(() => {
+        // Delay AOS initialization slightly to ensure elements are loaded
+          AOS.init({
+            effect: 'fade', // Adjust animation effect as needed
+            duration: 1000, // Adjust animation duration
+          });    
+      }, []);
+
+      const handleSlideChange = () => {
+        AOS.refreshHard(); // Refresh AOS animations on slide change
+      };
     
     return (
         <>
             <Swiper
+             onSlideChange={handleSlideChange}
                 effect={'fade'}
                 navigation={false}
                 pagination={{
@@ -50,7 +58,7 @@ export const Carousel = () => {
             >
                 <Wrapper>
                     <SwiperSlide>
-                        <div className="lg:flex bg-cover bg-[url('https://demo.xpeedstudio.com/marketov2/shoe/wp-content/uploads/sites/15/2018/10/slider-2.jpg')]  pb-[6rem]">
+                        <div className="lg:flex bg-cover bg-[url('https://demo.xpeedstudio.com/marketov2/shoe/wp-content/uploads/sites/15/2018/10/slider-2.jpg')]  pb-[10rem]">
                             <div className=' flex flex-col justify-center ps-24 pe-1 lg:w-[50%]' data-aos="fade-left" data-aos-duration="2000" >
                                 <h1 className='text-red-800 text-start font-bold text-3xl'>Our Exclusive</h1>
                                 <h2 className='font-bold text-start my-5 text-[3rem]'>Addidas Campus</h2>

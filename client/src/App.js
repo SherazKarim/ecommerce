@@ -22,15 +22,11 @@ import {
 import { Swiper } from 'swiper/react';
 
 
-AOS.init();
 
 function App() {
   const params = useParams()
   const dispatch = useDispatch()
   const queryClient = new QueryClient()
-  useEffect(() => {
-    AOS.init();
-  }, []);
 
 const fetchData = async () =>{
   try {
