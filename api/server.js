@@ -8,7 +8,6 @@ import Order from './Models/order.model.js'
 import cors from 'cors';
 const app = express()
 import stripe from 'stripe'
-connect();
 import { createOrder } from './Controllers/order.controller.js'
 import ordersRoute from "./Routes/order.route.js"
 dotenv.config();
@@ -16,6 +15,7 @@ dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
+connect();
 // Configure CORS more strictly (might need adjustments)
 app.use(cors({
     origin: "https://ecom-app-drab.vercel.app", // Replace with your actual frontend URL
@@ -25,7 +25,7 @@ app.use(cors({
 app.use('/api/product', productRoute)
 app.use('/api/auth', userRoute)
 app.use("/api/orders", ordersRoute)
-app.get("/", () => {
+app.get("/", (req, res) => {
     res.json("Hello")
 })
 const YOUR_DOMAIN = 'https://ecom-app-drab.vercel.app/';
