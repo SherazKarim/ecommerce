@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Wrapper from '../../components/wrapper/Wrapper';
 import { IoIosSearch } from "react-icons/io";
 import { Cart } from './Cart';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { newRequest } from '../../components/utills/newRequest';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../app/features/productSlice';
@@ -18,7 +18,8 @@ export const ProductDetails = () => {
     const params = useParams()
     const [data, setData] = useState([]);
     const dispatch = useDispatch()
-
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const navigate = useNavigate()
 
     const fetchData = async () => {
         try {
@@ -47,15 +48,19 @@ export const ProductDetails = () => {
             window.open(selectedImage, '_blank');
         }
     };
+    const profileData = JSON.parse(localStorage.getItem("profileData")) 
+    // logout fucntion
+    const profile = profileData || currentUser;
 
     const handleAddtoCart = () => {
-        const cartData = { ...data, quantity: count };
-        dispatch(addToCart(cartData));
-        setOpenCart(true);
+        if (profile) {
+            const cartData = { ...data, quantity: count };
+            dispatch(addToCart(cartData));
+            setOpenCart(true);
+        } else{
+            navigate("/signIn")
+        }
     };
-
-
-
 
     function decreaseHandler() {
         if (count <= 1) {
@@ -124,7 +129,7 @@ export const ProductDetails = () => {
                                     </button>
                                 </div>
                                 <div onClick={() => handleAddtoCart()} className='flex gap-2 bg-red-700 whitespace-nowrap text-white py-3 px-4 rounded hover:bg-green-500 cursor-pointer'>
-                                    <button  className=''>
+                                    <button className=''>
                                         Add to cart
                                     </button>
                                     {itemExistInCart ?

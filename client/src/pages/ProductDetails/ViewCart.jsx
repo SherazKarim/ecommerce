@@ -12,7 +12,11 @@ export const ViewCart = () => {
     const { cartItems } = useSelector((state) => state.allCart);
     const [totalAmt, setTotalAmt] = useState("");
     const [shippingCharge, setShippingCharge] = useState("");
-    
+
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const profileData = JSON.parse(localStorage.getItem('profileData'));
+    const profile = profileData || currentUser;
+
     useEffect(() => {
         setCartContent(cartItems)
     }, [cartItems])
@@ -58,18 +62,6 @@ export const ViewCart = () => {
         }
     }, [totalAmt]);
 
-        const handleCheckOut = async () => {
-            try {
-                const res = await newRequest.post("http://localhost:8000/create-checkout-session", {
-                    items: cartContent,
-                    shippingCharge
-                });
-                const data = res.data;
-                window.location = data.url;
-            } catch (err) {
-                console.error("Error during checkout:", err);
-            }
-        };
     return (
         <div>
             <div className='bg-[#fafafa] mb-8'>
@@ -147,7 +139,7 @@ export const ViewCart = () => {
                                             <p className="text-sm text-gray-700">including VAT</p>
                                         </div>
                                     </div>
-                                    <button onClick={() => handleCheckOut()} className="mt-6 w-full rounded-md bg-red-600 py-1.5 font-medium text-blue-50 hover:bg-green-500">Check out</button>
+                                    <Link to={"/placeorder"} state={{items:cartContent, totalAmt:totalAmt, shippingCharge:shippingCharge}} className="mt-6 block text-centerr w-full rounded-md bg-red-600 py-1.5 font-medium text-blue-50 hover:bg-green-500">Place Order</Link>
                                 </div>
                             </div></>
                     }

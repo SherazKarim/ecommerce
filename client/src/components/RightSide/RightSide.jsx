@@ -95,7 +95,7 @@ export const RightSide = ({allProducts, loading, maxRange, filteredProducts, set
                 {filteredProducts.length <=0 ? <h1 className="text-2xl text-center text-[600] w-full">No Such products Found!</h1> :
                     filteredProducts.map((item) => (
                         <Link
-                            to={`${`/product/${item._id}` ? `/product/${item._id}` : `/shopNow/product/${item._id}`}`}
+                            to={`/product/${item._id}`}
                             key={item._id}
                             state={{ item }}
                             onClick={() => window.scrollTo(0, 0)}

@@ -88,7 +88,7 @@ export const DiscountProduct = () => {
                 <div className=' grid lg:grid-cols-4 sm:grid-cols-2 gap-3 w-full mt-3'>
                     {isLoading ? "Loading..." : filterdDatas?.map((item) => (
                         <Link to={`product/${item._id}`} key={item._id} className='hover:shadow-2xl transition-all duration-500 hover:opacity-60 flex flex-col w-full pt-10 px-12 py-2'>
-                            <img className='h-auto lg:w-36' src={item.image.length > 1 && item?.image[0]} />
+                            <img className='h-auto lg:w-36' src={item?.image && item?.image[0]} />
                             <div className='flex flex-col lg:justify-start lg:items-start justify-center items-center gap-1 w-full'>
                                 <span className='font-semibold whitespace-nowrap text-[15px] text-black'>{item.subTitle}</span>
                                 <span className='font-semibold text-[15px] text-black text-start'>{item.title}</span>

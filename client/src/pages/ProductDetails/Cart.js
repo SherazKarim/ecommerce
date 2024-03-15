@@ -8,6 +8,7 @@ import { removeItem } from '../../app/features/productSlice';
 import { newRequest } from '../../components/utills/newRequest';
 export const Cart = ({ openCart, setOpenCart }) => {
     const { cartItems } = useSelector((state) => state.allCart)
+    console.log(cartItems)
     const [totalAmt, setTotalAmt] = useState("");
     const [shippingCharge, setShippingCharge] = useState("");
 
@@ -70,7 +71,7 @@ export const Cart = ({ openCart, setOpenCart }) => {
             </div>
             <Wrapper className='mx-auto flex flex-col'>
                 {
-                    cartItems.length <= 0 ? <h1 className='my-4 text-center font-bold'>No Products added in the cart yet!</h1> : cartItems?.map((item) => (
+                   cartItems && cartItems?.length <= 0 ? <h1 className='my-4 text-center font-bold'>No Products added in the cart yet!</h1> : cartItems?.map((item) => (
                         <div key={item._id} className='flex justify-between items-center px-8 py-1 w-[90%] mx-5 border-b-2'>
                             <div className='self-center flex justify-center items-center gap-3'>
                                 <img src={item.image[0]} className='w-24' />
