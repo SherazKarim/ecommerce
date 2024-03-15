@@ -15,12 +15,12 @@ dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
-app.use(cors({ origin: "*", credentials: true }))
+app.use(cors({ origin: "", credentials: true }))
 app.use('/api/product', productRoute)
 app.use('/api/auth', userRoute)
 app.use("/api/orders",ordersRoute)
 
-const YOUR_DOMAIN = 'http://localhost:3000/';
+const YOUR_DOMAIN = 'http://ecommerce-app-peach-zeta.vercel.app/';
 const stripeClient = stripe(process.env.STRIPE_SECRET_KEY);
 
 app.post('/api/order/create-checkout-session', async (req, res) => {

@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import BreadCrumb from '../../breadcrumbs/BreadCrumb';
 import OrdersTable from '../../components/tables/OrdersTable';
 import axios from 'axios';
+import { newRequest } from '../../../components/utills/newRequest';
 
 const Orders = () => {
   const [allOrders, setAllOrders] = useState([])
@@ -12,7 +13,7 @@ const Orders = () => {
   const params = location.pathname.slice(7, paramsLength);
   const fetchAllOrders = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/api/orders/allOrder")
+      const response = await newRequest.get("orders/allOrder")
       console.log(response)
       if (response.status === 200) {
         setLoader(false)

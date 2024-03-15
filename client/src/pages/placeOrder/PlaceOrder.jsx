@@ -59,7 +59,7 @@ const PlaceOrder = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const res = await newRequest.post("http://localhost:8000/api/order/create-checkout-session", {
+      const res = await newRequest.post("order/create-checkout-session", {
         items: productInfo,
         shippingCharges,
         formData: formData

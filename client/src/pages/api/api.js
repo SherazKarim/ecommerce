@@ -3,6 +3,7 @@ import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import { createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { newRequest } from '../../components/utills/newRequest';
 
 // Define the Auth Context
 const AuthContext = createContext({
@@ -21,7 +22,7 @@ function useAuth() {
     // google auth code 
     const handleGoogleAuth = async (credential) => {
         try {
-            const response = await axios.post('http://localhost:8000/api/auth/google', {
+            const response = await newRequest.post('auth/google', {
                 credential, client_id: clientId,
             });
             localStorage.setItem("profileData", JSON.stringify(response.data))
