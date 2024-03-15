@@ -8,6 +8,7 @@ import Order from './Models/order.model.js'
 import cors from 'cors';
 const app = express()
 import stripe from 'stripe'
+connect();
 import { createOrder } from './Controllers/order.controller.js'
 import ordersRoute from "./Routes/order.route.js"
 dotenv.config();
@@ -15,18 +16,20 @@ dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
-app.use(cors({ origin: "", credentials: true }))
+app.use(cors({ origin: "https://ecom-app-drab.vercel.app", methods: ["POST", "GET"], credentials: true }))
 app.use('/api/product', productRoute)
 app.use('/api/auth', userRoute)
-app.use("/api/orders",ordersRoute)
-
-const YOUR_DOMAIN = 'http://ecommerce-app-peach-zeta.vercel.app/';
+app.use("/api/orders", ordersRoute)
+app.get("/", () => {
+    res.json("Hello")
+})
+const YOUR_DOMAIN = 'https://ecom-app-drab.vercel.app/';
 const stripeClient = stripe(process.env.STRIPE_SECRET_KEY);
 
 app.post('/api/order/create-checkout-session', async (req, res) => {
     try {
         const { shippingCharges, items, formData } = req.body;
-        const { user_name, email_address, delivery_address, payment_method} = formData;
+        const { user_name, email_address, delivery_address, payment_method } = formData;
         // console.log(shippingCharges, items)
         if (!user_name, !email_address, !delivery_address, !payment_method) {
             return res.status(404).json({ message: "required all fields", succes: false })
@@ -61,11 +64,11 @@ app.post('/api/order/create-checkout-session', async (req, res) => {
             });
             const newOrder = new Order({
                 ...formData,
-                payment:"Paid"
+                payment: "Paid"
             })
             console.log(newOrder)
             const savedProduct = await newOrder.save()
-            res.status(200).json({ success: true, message:"Product added successfully!", savedProduct, url:session.url })
+            res.status(200).json({ success: true, message: "Product added successfully!", savedProduct, url: session.url })
         }
 
 
@@ -77,7 +80,6 @@ app.post('/api/order/create-checkout-session', async (req, res) => {
 });
 
 app.listen(process.env.PORT, () => {
-    connect();
     console.log("Backend server is running on port no.", process.env.PORT)
 })
 
