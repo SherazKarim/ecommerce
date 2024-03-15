@@ -16,7 +16,12 @@ dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
-app.use(cors({ origin: "https://ecom-app-drab.vercel.app", methods: ["POST", "GET"], credentials: true }))
+// Configure CORS more strictly (might need adjustments)
+app.use(cors({
+    origin: "https://ecom-app-drab.vercel.app", // Replace with your actual frontend URL
+    credentials: true, // Allow cookies for authorized requests
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+  }));
 app.use('/api/product', productRoute)
 app.use('/api/auth', userRoute)
 app.use("/api/orders", ordersRoute)
