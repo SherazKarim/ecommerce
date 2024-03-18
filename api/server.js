@@ -17,11 +17,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 connect();
 // Configure CORS more strictly (might need adjustments)
-app.use(cors({
-    origin: "https://ecom-app-drab.vercel.app", // Replace with your actual frontend URL
-    credentials: true, // Allow cookies for authorized requests
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
-  }));
+// app.use(cors({
+//     origin: "https://ecom-app-drab.vercel.app", // Replace with your actual frontend URL
+//     credentials: true, // Allow cookies for authorized requests
+//     methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+//   }));
+const corsOptions = {
+    origin: "*",
+    optionsSuccessStatus: 200,
+  };
+  app.use(cors(corsOptions));
 app.use('/api/product', productRoute)
 app.use('/api/auth', userRoute)
 app.use("/api/orders", ordersRoute)
