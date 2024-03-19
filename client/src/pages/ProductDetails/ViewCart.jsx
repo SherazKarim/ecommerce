@@ -139,7 +139,7 @@ export const ViewCart = () => {
                                             <p className="text-sm text-gray-700">including VAT</p>
                                         </div>
                                     </div>
-                                    <Link to={"/placeorder"} state={{items:cartContent, totalAmt:totalAmt, shippingCharge:shippingCharge}} className="mt-6 block justify-center text-center w-full rounded-md bg-red-600 py-1.5 font-medium text-blue-50 hover:bg-green-500">Place Order</Link>
+                                    <Link to={"/placeorder"} state={{items:cartContent, totalAmt:totalAmt, shippingCharge:shippingCharge}} className="mt-6 block text-center w-full rounded-md bg-red-600 py-1.5 font-medium text-blue-50 hover:bg-green-500">Place Order</Link>
                                 </div>
                             </div></>
                     }
