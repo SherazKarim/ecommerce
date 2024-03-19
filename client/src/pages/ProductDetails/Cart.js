@@ -53,7 +53,7 @@ export const Cart = ({ openCart, setOpenCart }) => {
     const handleCheckOut = async () => {
         setOpenCart(true)
         try {
-            const res = await axios.post("https://ecom-app-drab.vercel.app/create-checkout-session", {
+            const res = await axios.post("https://ecom-app-drab.vercel.app/api/order/create-checkout-session", {
                 items: cartItems,
                 shippingCharge
             });
