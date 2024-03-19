@@ -22,7 +22,7 @@ connect();
 //     methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
 //   }));
 const corsOptions = {
-    origin: "http://localhost:3000",
+    origin: "https://ecom-app-drab.vercel.app",
     credentials: true,
     optionsSuccessStatus: 200,
 };
@@ -34,7 +34,7 @@ app.use("/api/orders", ordersRoute)
 app.get("/", (req, res) => {
     res.json("Hello")
 })
-const YOUR_DOMAIN = 'http://localhost:3000';
+const YOUR_DOMAIN = 'https://ecom-app-drab.vercel.app';
 const stripeClient = stripe(process.env.STRIPE_SECRET_KEY);
 
 app.post('/api/order/create-checkout-session', async (req, res) => {

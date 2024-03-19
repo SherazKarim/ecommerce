@@ -32,6 +32,7 @@ export const ProductDetails = () => {
             console.log(error)
         }
     }
+    console.log("data",data)
     useEffect(() => {
         fetchData();
     }, [])
@@ -94,12 +95,12 @@ export const ProductDetails = () => {
                     <div className='md:flex w-full px-8'>
                         <div className='md:w-[50%] w-full'>
                             <div className='relative self-center flex justify-center'>
-                                <img className='w-[80%]' src={selectedImage || (data?.image?.length > 1 && data.image[0])} />
+                                <img className='w-[80%]' src={selectedImage || (data?.image?.length > 1 || data.image[0])} />
                                 <IoIosSearch size='2rem' className='absolute top-8 right-36 z-9999 cursor-pointer hover:text-red-800' onClick={openImageInNewTab} />
                             </div>
                             <div className='flex gap-2'>
                                 {
-                                    data?.image?.length > 1 && data.image.map((item, index) => (
+                                    data?.image?.length > 1 || data.image.map((item, index) => (
                                         <img key={index}
                                             className='border hover:opacity-70 cursor-pointer w-[20%]'
                                             src={item}
