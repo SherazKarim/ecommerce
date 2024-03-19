@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItem } from '../../app/features/productSlice';
 import { newRequest } from '../../components/utills/newRequest';
+import axios from 'axios';
 export const Cart = ({ openCart, setOpenCart }) => {
     const { cartItems } = useSelector((state) => state.allCart)
     console.log(cartItems)
@@ -52,7 +53,7 @@ export const Cart = ({ openCart, setOpenCart }) => {
     const handleCheckOut = async () => {
         setOpenCart(true)
         try {
-            const res = await newRequest.post("https://ecom-app-drab.vercel.app/create-checkout-session", {
+            const res = await axios.post("https://ecom-app-drab.vercel.app/create-checkout-session", {
                 items: cartItems,
                 shippingCharge
             });
