@@ -55,7 +55,8 @@ export const Cart = ({ openCart, setOpenCart }) => {
         try {
             const res = await newRequest.post("order/create-checkout-session", {
                 items: cartItems,
-                shippingCharges:shippingCharge
+                shippingCharges:shippingCharge,
+                formData:null
             });
             const data = res.data;
             if (data.url) {
