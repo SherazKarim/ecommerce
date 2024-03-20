@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItem } from '../../app/features/productSlice';
 import { newRequest } from '../../components/utills/newRequest';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 export const Cart = ({ openCart, setOpenCart }) => {
     const { cartItems } = useSelector((state) => state.allCart)
@@ -55,13 +56,13 @@ export const Cart = ({ openCart, setOpenCart }) => {
         try {
             const res = await newRequest.post("order/create-checkout-session", {
                 items: cartItems,
-                shippingCharges:shippingCharge,
-                formData:null
+                shippingCharges: shippingCharge,
+                formData: null
             });
             const data = res.data;
             if (data.url) {
                 window.location = data.url;
-              }
+            }
         } catch (err) {
             console.error("Error during checkout:", err);
         }
@@ -75,7 +76,7 @@ export const Cart = ({ openCart, setOpenCart }) => {
             </div>
             <Wrapper className='mx-auto flex flex-col'>
                 {
-                   cartItems && cartItems?.length <= 0 ? <h1 className='my-4 text-center font-bold'>No Products added in the cart yet!</h1> : cartItems?.map((item) => (
+                    cartItems && cartItems?.length <= 0 ? <h1 className='my-4 text-center font-bold'>No Products added in the cart yet!</h1> : cartItems?.map((item) => (
                         <div key={item._id} className='flex justify-between items-center px-8 py-1 w-[90%] mx-5 border-b-2'>
                             <div className='self-center flex justify-center items-center gap-3'>
                                 <img src={item.image[0]} className='w-24' />
@@ -115,9 +116,11 @@ export const Cart = ({ openCart, setOpenCart }) => {
                                 View Cart
                             </button>
                         </Link>
-                        <button onClick={() => handleCheckOut()} className='bg-red-700 text-white text-sm py-3 px-6 rounded-full hover:bg-green-500'>
-                            Check Out
-                        </button>
+                        <Link to='/placeOrder'>
+                            <button className='bg-red-700 text-white text-sm py-3 px-6 rounded-full hover:bg-green-500'>
+                                Check Out
+                            </button>
+                        </Link>
                     </div>
                 </>
             }
