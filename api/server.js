@@ -45,8 +45,9 @@ app.post('/api/order/create-checkout-session', async (req, res) => {
         // if (!user_name, !email_address, !delivery_address, !payment_method) {
         //     return res.status(404).json({ message: "required all fields", succes: false })
         // }
+        // payment_method.toLowerCase() === "cash on delivery"
 
-        if (payment_method.toLowerCase() === "cash on delivery") {
+        if (false) {
             createOrder(req, res)
         } else {
             const session = await stripeClient.checkout.sessions.create({
