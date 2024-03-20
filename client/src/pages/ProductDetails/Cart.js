@@ -58,7 +58,9 @@ export const Cart = ({ openCart, setOpenCart }) => {
                 shippingCharge
             });
             const data = res.data;
-            window.location = data.url;
+            if (data.url) {
+                window.location = data.url;
+              }
         } catch (err) {
             console.error("Error during checkout:", err);
         }

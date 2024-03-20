@@ -76,7 +76,7 @@ const PlaceOrder = () => {
     }
   };
 
-  console.log(formData)
+  // console.log(formData)
 
   return (
     <>
