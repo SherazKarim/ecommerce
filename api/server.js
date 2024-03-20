@@ -39,7 +39,7 @@ const stripeClient = stripe(process.env.STRIPE_SECRET_KEY);
 
 app.post('/api/order/create-checkout-session', async (req, res) => {
     try {
-        // const { shippingCharges, items, formData } = req.body;
+        const { shippingCharges, items, formData } = req.body;
        
         // console.log(shippingCharges, items)
         // !user_name && !email_address && !delivery_address && !payment_method
