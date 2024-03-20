@@ -74,7 +74,7 @@ app.post('/api/order/create-checkout-session', async (req, res) => {
                 cancel_url: `${YOUR_DOMAIN}canceled`,
             });
             const newOrder = new Order({
-                ...formData,
+             
                 payment: "Paid"
             })
             console.log(newOrder)
