@@ -44,7 +44,7 @@ app.post('/api/order/create-checkout-session', async (req, res) => {
         // console.log(shippingCharges, items)
         // !user_name && !email_address && !delivery_address && !payment_method
         if (!formData || formData === null) {
-            return res.status(404).json({ message: "required all fields", succes: false })
+            return res.status(422).json({ message: "required all fields", succes: false })
         }else{
  const { user_name, email_address, delivery_address, payment_method } = formData;
         if (payment_method.toLowerCase() === "cash on delivery") {
