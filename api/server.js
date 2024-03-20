@@ -39,14 +39,14 @@ const stripeClient = stripe(process.env.STRIPE_SECRET_KEY);
 
 app.post('/api/order/create-checkout-session', async (req, res) => {
     try {
-        const { shippingCharges, items, formData } = req.body;
-        const { user_name, email_address, delivery_address, payment_method } = formData;
+        // const { shippingCharges, items, formData } = req.body;
+       
         // console.log(shippingCharges, items)
         // !user_name && !email_address && !delivery_address && !payment_method
         if (!formData || formData === null) {
             return res.status(404).json({ message: "required all fields", succes: false })
-        }
-
+        }else{
+ const { user_name, email_address, delivery_address, payment_method } = formData;
         if (payment_method.toLowerCase() === "cash on delivery") {
             createOrder(req, res)
         } else {
@@ -82,7 +82,7 @@ app.post('/api/order/create-checkout-session', async (req, res) => {
             const savedProduct = await newOrder.save()
             res.status(200).json({ success: true, message: "Product added successfully!", savedProduct, url: session.url })
         }
-
+    }
 
     } catch (error) {
         res.status(501).json({ success: false, message: "internal server error", error });
