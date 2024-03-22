@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItem } from '../../app/features/productSlice';
 import { newRequest } from '../../components/utills/newRequest';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 export const Cart = ({ openCart, setOpenCart }) => {
     const { cartItems } = useSelector((state) => state.allCart)
