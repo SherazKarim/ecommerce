@@ -116,7 +116,7 @@ export const Cart = ({ openCart, setOpenCart }) => {
                                 View Cart
                             </button>
                         </Link>
-                        <Link className='' to='/placeorder'>
+                        <Link className='testi' to='/placeorder'>
                             <button className='bg-red-700 text-white text-sm py-3 px-6 rounded-full hover:bg-green-500'>
                                 Check Out
                             </button>
