@@ -10,7 +10,7 @@ import { TiTick } from "react-icons/ti";
 
 export const ProductDetails = () => {
     const cartItems = useSelector((state) => state.allCart.cartItems)
-
+    console.log(cartItems)
     const [count, setCount] = useState(1);
     const [selectedImage, setSelectedImage] = useState(null);
     const [openCart, setOpenCart] = useState(false);
@@ -24,6 +24,7 @@ export const ProductDetails = () => {
     const fetchData = async () => {
         try {
             const response = await newRequest.get(`product/single/${params.id}`);
+            console.log("response from api",response)
             const result = await response.data;
             setData(result)
             setLoader(false)
@@ -32,12 +33,13 @@ export const ProductDetails = () => {
             console.log(error)
         }
     }
-    console.log("data",data)
+    console.log("data", data)
     useEffect(() => {
         fetchData();
     }, [])
 
-    const itemExistInCart = cartItems.some(item => item._id === params.id)
+    const itemExistInCart = cartItems?.isArray ? cartItems.some(item => item._id === params.id) : null
+    console.log(itemExistInCart)
 
 
     const handleImageClick = (imageUrl) => {
@@ -49,7 +51,7 @@ export const ProductDetails = () => {
             window.open(selectedImage, '_blank');
         }
     };
-    const profileData = JSON.parse(localStorage.getItem("profileData")) 
+    const profileData = JSON.parse(localStorage.getItem("profileData"))
     // logout fucntion
     const profile = profileData || currentUser;
 
@@ -58,7 +60,7 @@ export const ProductDetails = () => {
             const cartData = { ...data, quantity: count };
             dispatch(addToCart(cartData));
             setOpenCart(true);
-        } else{
+        } else {
             navigate("/signIn")
         }
     };

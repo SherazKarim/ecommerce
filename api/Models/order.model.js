@@ -1,5 +1,3 @@
-// models/Order.js
-
 import mongoose from 'mongoose';
 
 const orderSchema = new mongoose.Schema({
@@ -15,18 +13,6 @@ const orderSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  product_name: {
-    type:"String",
-    required:true
-  },
-  quantity:{
-    type:Number,
-    required:true
-  },
-  price:{
-    type:String,
-    required:true
-  },
   date: {
     type: Date,
     default: Date.now
@@ -35,14 +21,39 @@ const orderSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  payment:{
-    type:String,
-    default:"pending"
+  payment_status: {
+    type: String,
+    default: "pending"
   },
   shipped: {
     type: Boolean,
     default: false,
-  }
+  },
+  items: [
+    {
+      productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
+      },
+      product: {
+        type: String,
+        required: true
+      },
+      quantity: {
+        type: Number,
+        required: true
+      },
+      price: {
+        type: Number,
+        default: 0,
+        required: true
+      }
+    }
+  ],
+  total: {
+    type: Number,
+    required: true
+  },
 });
 
 const Order = mongoose.model('Order', orderSchema);

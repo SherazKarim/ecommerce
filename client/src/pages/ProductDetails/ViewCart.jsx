@@ -7,9 +7,10 @@ import { Link } from 'react-router-dom';
 import {newRequest} from "../../components/utills/newRequest"
 
 export const ViewCart = () => {
-    const [cartContent, setCartContent] = useState(null);
+    const [cartContent, setCartContent] = useState([]);
     const dispatch = useDispatch();
     const { cartItems } = useSelector((state) => state.allCart);
+    console.log(cartItems)
     const [totalAmt, setTotalAmt] = useState("");
     const [shippingCharge, setShippingCharge] = useState("");
 
@@ -17,9 +18,13 @@ export const ViewCart = () => {
     const profileData = JSON.parse(localStorage.getItem('profileData'));
     const profile = profileData || currentUser;
 
+    // console.log("cartItems",cartItems)
     useEffect(() => {
         setCartContent(cartItems)
     }, [cartItems])
+    console.log(cartContent)
+
+    
 
     function decreaseHandler(id) {
         let testId = cartContent.map((item) => {

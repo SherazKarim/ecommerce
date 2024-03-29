@@ -12,6 +12,7 @@
     "aos": "^2.3.4",
     "aphrodite": "^2.4.0",
     "axios": "^1.6.7",
+    "cors": "^2.8.5",
     "flowbite": "^2.2.1",
     "framer-motion": "^11.0.3",
     "multi-range-slider-react": "^2.0.7",

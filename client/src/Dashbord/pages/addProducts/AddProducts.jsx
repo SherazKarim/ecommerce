@@ -25,8 +25,10 @@ const AddProduct = () => {
 
   const handleImageChange = async (e) => {
     const selectedFile = e.target.files[0];
-    const url = await upload(selectedFile)
-    setFile(url)
+    if(selectedFile){
+      const url = await upload(selectedFile)
+      setFile(url)
+    }
   }
 
   const onChange = (e) => {

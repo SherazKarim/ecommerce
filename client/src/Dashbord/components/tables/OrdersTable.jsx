@@ -1,11 +1,11 @@
 import React from 'react'
 
 const OrdersTable = ({ allOrders }) => {
-    console.log(allOrders)
+    console.log(allOrders.items)
     return (
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <thead class="text-[10px] text-[300] text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             Date
@@ -20,7 +20,7 @@ const OrdersTable = ({ allOrders }) => {
                             product name
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            price
+                            Total
                         </th>
                         <th scope="col" class="px-6 py-3">
                             delivery address
@@ -50,10 +50,17 @@ const OrdersTable = ({ allOrders }) => {
                                     {order.email_address}
                                 </td>
                                 <td class="px-6 py-4">
-                                   {order.product_name}
+                                    {order?.items?.length > 0 && order?.items?.map((item) => (
+                                        <div className='flex flex-col truncate' key={item._id}>
+                                            <p className='flex gap-4'>
+                                                {item.product}
+                                                <span className='text-red-600 text-[13px] font-[300]'>QTY {item.quantity}</span>
+                                            </p>
+                                        </div>
+                                    ))}
                                 </td>
                                 <td class="px-6 py-4">
-                                   {order.price}
+                                    {order.total}
                                 </td>
                                 <td class="px-6 py-4">
                                     {order.delivery_address}
@@ -61,8 +68,10 @@ const OrdersTable = ({ allOrders }) => {
                                 <td class="px-6 py-4">
                                     {order.payment_method}
                                 </td>
-                                <td class={`px-6 py-4 ${order.payment === "Paid" ? "text-blue-600 " : "text-red-600"}`}>
-                                    {order.payment}
+                                <td class={`px-6 py-4 `}>
+                                    <p className={`px-3 py-[2px] flex justify-center items-center text-[14px] rounded-full text-white ${order.payment_status === "Paid" ? "bg-blue-600 " : "bg-red-600"}`}>
+                                        {order.payment_status}
+                                    </p>
                                 </td>
                                 <td class="px-6 py-4">
                                     {order.shipped.toString()}

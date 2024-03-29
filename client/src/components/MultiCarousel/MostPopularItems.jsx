@@ -60,7 +60,7 @@ const MostPopularItems = () => {
                 <SwiperSlide>
                     {
                         getData && getData.slice(0, 2).map((item) => (
-                            <div key={item._id} className='flex w-full '>
+                            <div key={item._id} className='flex w-full gap-4 '>
                                 <div className='self-start w-24'>
                                     <img src={item.image[0]} />
                                 </div>
@@ -76,7 +76,7 @@ const MostPopularItems = () => {
                 <SwiperSlide>
                     {
                          getData && getData.slice(3, 5).map((item) => (
-                            <div key={item._id} className='flex w-full bg-white'>
+                            <div key={item._id} className='flex gap-4 w-full bg-white'>
                                 <div className='self-start w-24'>
                                     <img src={item.image[0]} />
                                 </div>

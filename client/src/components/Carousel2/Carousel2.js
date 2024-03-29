@@ -28,7 +28,7 @@ export const Carousel2 = () => {
             >
                 <div>
                     <SwiperSlide>
-                        <div className="flex lg:flex-row flex-col lg:gap-x-12 gap-y-16 py-28 bg-cover bg-[url('https://img.freepik.com/free-photo/abstract-luxury-gradient-blue-background-smooth-dark-blue-with-black-vignette-studio-banner_1258-108775.jpg?size=626&ext=jpg&ga=GA1.1.901680783.1706168011&semt=ais')]">
+                        <div className="flex lg:flex-row flex-col justify-center items-center lg:gap-x-12 gap-y-16 py-28 bg-cover bg-[url('https://img.freepik.com/free-photo/abstract-luxury-gradient-blue-background-smooth-dark-blue-with-black-vignette-studio-banner_1258-108775.jpg?size=626&ext=jpg&ga=GA1.1.901680783.1706168011&semt=ais')]">
                             <div className='relative lg:w-[50%] flex justify-end'>
                                 <div className='flex absolute left-[50%] z-10 justify-center ' data-aos="fade-down" data-aos-duration="2000">
                                     <div className='bg-red-700 rounded-[100%] w-24 h-24 flex flex-col items-center justify-center animate-spin-slow origin-center'>
@@ -48,8 +48,8 @@ export const Carousel2 = () => {
                                     />
                                 </div>
                             </div>
-                            <div className=' flex flex-col justify-center pe-1 lg:w-[50%]' data-aos="fade-left" data-aos-duration="2000" >
-                                <h1 className='text-white text-start font-bold text-4xl'>Join now & earn 5% rewards on every order</h1>
+                            <div className=' flex flex-col justify-center lg:items-start items-center pe-1 lg:w-[50%]' data-aos="fade-left" data-aos-duration="2000" >
+                                <h1 className='text-white lg:text-start font-bold text-4xl text-center'>Join now & earn 5% rewards on every order</h1>
                                 <div className='font-semibold text-sm text-start py-9'>
                                     <span className='text-lg text-white pe-3'>$340.00</span>
                                     <span className='text-gray-400 line-through'>$460.00</span>
@@ -67,7 +67,7 @@ export const Carousel2 = () => {
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div className="lg:flex gap-x-12 py-28 bg bg-cover bg-[url('https://img.freepik.com/free-photo/abstract-luxury-gradient-blue-background-smooth-dark-blue-with-black-vignette-studio-banner_1258-108775.jpg?size=626&ext=jpg&ga=GA1.1.901680783.1706168011&semt=ais')]">
+                        <div className="flex lg:flex-row flex-col justify-center items-center lg:gap-x-12 gap-y-16 py-28 bg bg-cover bg-[url('https://img.freepik.com/free-photo/abstract-luxury-gradient-blue-background-smooth-dark-blue-with-black-vignette-studio-banner_1258-108775.jpg?size=626&ext=jpg&ga=GA1.1.901680783.1706168011&semt=ais')]">
                             <div className='relative lg:w-[50%] flex justify-end'>
                                 <div className='flex absolute left-[50%] z-10 justify-center' data-aos="fade-down" data-aos-duration="2000">
                                     <div className='bg-blue-600 rounded-[100%] w-24 h-24 flex flex-col items-center justify-center animate-spin-slow origin-center'>
@@ -87,8 +87,8 @@ export const Carousel2 = () => {
                                     />
                                 </div>
                             </div>
-                            <div className=' flex flex-col justify-center pe-1 lg:w-[50%]' data-aos="fade-left" data-aos-duration="2000" >
-                                <h1 className='text-white text-start font-bold text-4xl'>Join now & earn 5% rewards on every order</h1>
+                            <div className=' flex flex-col justify-center  lg:items-start items-center pe-1 lg:w-[50%]' data-aos="fade-left" data-aos-duration="2000" >
+                                <h1 className='text-white lg:text-start text-center font-bold text-4xl'>Join now & earn 5% rewards on every order</h1>
                                 <div className='font-semibold text-sm text-start py-9'>
                                     <span className='text-lg text-white pe-3'>$340.00</span>
                                     <span className='text-gray-400 line-through'>$460.00</span>

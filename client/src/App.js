@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter, Routes, Route, useParams, useLocation } from "react-router-dom"
 import { itemDetails, singleItem } from './app/features/productSlice';
 import { useDispatch } from 'react-redux'
@@ -29,8 +29,10 @@ import Header from './Dashbord/header/Header';
 import SideBar from './Dashbord/sidebar/SideBar';
 import Admin from './Dashbord/home/Home';
 import PlaceOrder from "./pages/placeOrder/PlaceOrder"
+import Aos from 'aos';
 function App() {
   const [openSideBar, setOpenSideBar] = useState(false)
+  const navbarRef = useRef(null);
   const dispatch = useDispatch()
   const queryClient = new QueryClient()
   const fetchData = async () => {
@@ -46,6 +48,33 @@ function App() {
   useEffect(() => {
     fetchData()
   }, [])
+
+  useEffect(() => {
+    // Delay AOS initialization slightly to ensure elements are loaded
+    Aos.init({
+      effect: 'fade', // Adjust animation effect as needed
+      duration: 1000, // Adjust animation duration
+    });
+  }, []);
+
+  // useEffect for sidebar close 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Check if the click is outside the sidebar and the sidebar is open
+      if (openSideBar && !navbarRef.current.contains(event.target)) {
+        setOpenSideBar(false); // Close the sidebar
+      }
+    };
+  
+    // Attach click event listener to the entire document
+    document.addEventListener('mousedown', handleClickOutside);
+  
+    // Cleanup function to remove click event listener when component unmounts
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [openSideBar, navbarRef]);
+
   const location = useLocation();
   const { pathname } = location; // Destructure pathname directly
   const isDashboardRoute = pathname.startsWith("/admin")
@@ -54,10 +83,10 @@ function App() {
       <ToastContainer />
       {isDashboardRoute ? (
         <>
-          <Header setOpenSideBar={setOpenSideBar} />
-          <div className="grid grid-cols-12 w-full mt-4">
-            <SideBar openSideBar={openSideBar} setOpenSideBar={setOpenSideBar} />
-            <div className="lg:col-span-10 col-span-12  h-auto">
+          <div className="grid grid-cols-12 w-full">
+            <SideBar openSideBar={openSideBar} setOpenSideBar={setOpenSideBar} navbarRef={navbarRef}/>
+            <div className={`${openSideBar ? "col-span-10 " : "col-span-12"} h-auto`}>
+              <Header setOpenSideBar={setOpenSideBar} />
               <Routes>
                 <Route path='/admin' element={<Admin />} />
                 <Route path='/admin/products' element={<Products />} />

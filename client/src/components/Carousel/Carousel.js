@@ -58,7 +58,7 @@ export const Carousel = () => {
             >
                 <Wrapper>
                     <SwiperSlide>
-                        <div className="lg:flex bg-cover bg-[url('https://demo.xpeedstudio.com/marketov2/shoe/wp-content/uploads/sites/15/2018/10/slider-2.jpg')]  pb-[10rem]">
+                        <div className="flex lg:flex-row flex-col justify-center items-center bg-cover bg-[url('https://demo.xpeedstudio.com/marketov2/shoe/wp-content/uploads/sites/15/2018/10/slider-2.jpg')]  pb-[10rem]">
                             <div className=' flex flex-col justify-center ps-24 pe-1 lg:w-[50%]' data-aos="fade-left" data-aos-duration="2000" >
                                 <h1 className='text-red-800 text-start font-bold text-3xl'>Our Exclusive</h1>
                                 <h2 className='font-bold text-start my-5 text-[3rem]'>Addidas Campus</h2>
@@ -66,10 +66,10 @@ export const Carousel = () => {
                                 <Link to='/shopNow'
                                     className='bg-black hover:bg-orange-600 transition-all duration-200 ease-in-out  text-white flex font-semibold w-fit text-sm px-7 py-4 mt-5'>View Collection</Link>
                             </div>
-                            <div className='relative lg:w-[60%]'>
+                            <div className='relative lg:w-[60%] w-full  flex justify-center items-center'>
                                 <img className='w-[300px]' src='https://demo.xpeedstudio.com/marketov2/shoe/wp-content/uploads/sites/15/2018/10/re_run-min-1.png' data-aos="fade-down" data-aos-duration="2000" />
                                 <div
-                                    className="absolute w-[100%] top-[20%]"
+                                    className="absolute w-[100%] top-[20%]  flex justify-center items-center"
                                     onMouseMove={handleMouseMove}
                                     data-aos="fade-up" data-aos-duration="2000"
                                 >
