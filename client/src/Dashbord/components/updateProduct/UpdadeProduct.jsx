@@ -3,14 +3,15 @@ import upload from '../../../components/utills/upload';
 import { newRequest } from '../../../components/utills/newRequest';
 
 const UpdadeProduct = ({ setUpdateProductModel, setExistingData, existingData, setMessage, setMessageModel }) => {
-    const [file, setFile] = useState(null);
-
+    const [file, setFile] = useState(existingData?.image[0]);
     if (existingData === null) return
 
     const handleImageChange = async (e) => {
         const selectedFile = e.target.files[0];
-        const url = await upload(selectedFile)
-        setFile(url)
+        if (selectedFile) {
+            const url = await upload(selectedFile)
+            setFile(url)
+        }
     }
 
     const onChange = (e) => {
@@ -23,7 +24,7 @@ const UpdadeProduct = ({ setUpdateProductModel, setExistingData, existingData, s
         try {
             const response = await newRequest.put(`product/updateProduct/${existingData._id}`, {
                 ...existingData,
-                image: file
+                image: file 
             });
             if (response.status === 200) {
                 setMessage(response.data.message)

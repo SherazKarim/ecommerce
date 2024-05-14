@@ -34,7 +34,6 @@ export const SignUp = () => {
                 setMessage(error.response.data.message)
             }
         }
-
     }
 
     const handleChange = (e) => {

@@ -14,7 +14,7 @@ export const Navbar = () => {
   const [openNavMobile, setOpenNavMobile] = useState(false);
   const { cartItems } = useSelector((state) => state.allCart);
   const [activeTab, setActiveTab] = useState("")
-  const dropdownRef = useRef(null);
+  const myOrders = JSON.parse(localStorage.getItem("myorders"))
 
   // fetching data from localstorage 
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -37,7 +37,9 @@ export const Navbar = () => {
     { id: 5, name: 'Gallery', link: '/' },
     isUserAdmin ? {
       id: 6, name: 'Dashboard', link: '/admin'
-    } : ""
+    } : {
+      id:6, name:"My Orders", link:"/myorders", orderCount:true
+    }
 
   ];
 
@@ -56,19 +58,24 @@ export const Navbar = () => {
                 >
                   <ul
                     className={` flex flex-col gap-4 px-5 lg:mt-2 mb-4 lg:mb-0 lg:flex-row lg:items-center lg:gap-6 ${openNavMobile ? 'left-0' : 'left-[-100%]'
-                      } lg:w-auto w-[50%]  lg:h-auto h-[100vh]  lg:bg-transparent bg-white`}
+                      } lg:w-auto w-[30%]  lg:h-auto h-[100vh]  lg:bg-transparent bg-white`}
                   >
                     {openNavMobile ? (
-                      <div className="h-8 w-8 hover:bg-gray-200 mt-5 flex justify-center items-center rounded-full ">
+                      <>
+                      <div className="h-7 w-8 hover:bg-gray-200 mt-5 flex justify-center items-center rounded-full ">
                         <RxCross1 className="cursor-pointer text-xl" onClick={() => setOpenNavMobile(false)} />
                       </div>
+                      <div className='bg-gray-500 w-full h-[.2%]'></div>
+                      </>
                     ) : null}
                     {navLinks.map((item) => (
                       <li onClick={() => {
                         setOpenNavMobile(false)
                         setActiveTab(item.name)
                       }} key={item.id} className="block p-1 font-sans text-sm antialiased font-medium text-blue-gray-900 ">
-                        <Link to={item.link} className="flex hover:text-blue-600 items-center">
+                        <Link to={item.link} className="relative flex hover:text-blue-600 items-center">
+                          {item.orderCount && myOrders?.items?.length > 0 ? <span className="absolute top-[-7px] lg:right-[-10px] left-[59px] h-4 w-4 rounded-full  bg-red-600 flex justify-center items-center text-white">
+                            {myOrders.items.length}</span> : ""}
                           {item.name}
                         </Link>
                       </li>
@@ -77,13 +84,13 @@ export const Navbar = () => {
                 </div>
                 <div className="flex justify-center items-center gap-x-1 ml-8">
                   <button
-                    className="px-4 py-2 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block"
+                    className="px-3 py-2 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block"
                     type="button"
                   >
                     <FiHeart size={'2rem'} />
                   </button>
                   <button
-                    className=" px-4 py-2 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    className="px-4 py-4 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                     type="button"
                   >
                     <Link to="/viewCart" className="flex items-center justify-center">

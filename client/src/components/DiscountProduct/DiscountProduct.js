@@ -3,6 +3,7 @@ import Wrapper from '../wrapper/Wrapper';
 import { newRequest } from '../utills/newRequest';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Spinner } from '../../Dashbord/components/spinner/Spinner';
 
 export const DiscountProduct = () => {
     const getData = useSelector((state)=>state.allCart.cart);
@@ -52,20 +53,20 @@ export const DiscountProduct = () => {
     };
 
     return (
-        <Wrapper className='lg:flex gap-10'>
+        <Wrapper className='lg:flex gap-10 min-h-[38rem]'>
             <div className=' lg:block hidden relative bg-gradient-to-b from-gray-200 to-gray-100 lg:w-80 w-full overflow-hidden'>
                 <div className='flex flex-col items-start p-8'>
                     <h1 className='text-red-600 font-medium text-2xl'>Fashion</h1>
                     <span className='text-5xl font-extrabold text-start'>Jasux Shoes</span>
                     <button className='border border-r-1 border-gray-600 hover:bg-gray-300 mt-5 px-6 py-3 text-red-600 rounded-md'>View Collections</button>
                 </div>
-                <div className='flex justify-end pe-10'>
+                <div className='flex justify-end pe-10 '>
                     <div className='bg-red-700 rounded-[100%] w-24 h-24 flex flex-col items-center justify-center'>
                         <h1 className='text-white font-extrabold text-[1.3rem]'>57%</h1>
                         <span className='text-white'>Offer</span>
                     </div>
                 </div>
-                <div className='absolute bottom-0 -left-16 '>
+                <div className='absolute bottom-0 -left-16'>
                     <img src="https://www.freepnglogos.com/uploads/shoes-png/dance-shoes-png-transparent-dance-shoes-images-5.png" alt="" />
                 </div>
             </div>
@@ -86,7 +87,7 @@ export const DiscountProduct = () => {
                     </div>
                 </div>
                 <div className=' grid lg:grid-cols-4 sm:grid-cols-2 gap-3 w-full mt-3'>
-                    {isLoading ? "Loading..." : filterdDatas?.map((item) => (
+                    {isLoading ? <Spinner/> : filterdDatas?.map((item) => (
                         <Link to={`product/${item._id}`} key={item._id} className='hover:shadow-2xl transition-all duration-500 hover:opacity-60 flex flex-col w-full pt-10 px-12 py-2'>
                             <img className='h-auto lg:w-36' src={item?.image && item?.image[0]} />
                             <div className='flex flex-col lg:justify-start lg:items-start justify-center items-center gap-1 w-full'>
@@ -95,11 +96,11 @@ export const DiscountProduct = () => {
                                 <div className='flex justify-between'>
                                     {item.discount && (
                                         <>
-                                            <span className=' text-[18px] font-[600] text-red-300  line-through'>{item.discount}</span>
+                                            <span className=' text-[18px] font-[600] text-red-300  line-through'>{item.discount}%</span>
                                             <span>-</span>
                                         </>
                                     )}
-                                    <span className='text-[18px] font-[600] text-red-800'>{item.price}</span>
+                                    <span className='text-[18px] font-[600] text-red-800'>${item.price}</span>
                                 </div>
                             </div>
                         </Link>

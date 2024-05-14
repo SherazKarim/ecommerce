@@ -5,6 +5,10 @@ const orderSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  user_id: {
+    type: String,
+    required: true
+  },
   email_address: {
     type: String,
     required: true
@@ -25,9 +29,9 @@ const orderSchema = new mongoose.Schema({
     type: String,
     default: "pending"
   },
-  shipped: {
-    type: Boolean,
-    default: false,
+  status: {
+    type: String,
+    default: "Order placed",
   },
   items: [
     {
@@ -38,6 +42,10 @@ const orderSchema = new mongoose.Schema({
       product: {
         type: String,
         required: true
+      },
+      image: {
+        type: String,
+        required:true
       },
       quantity: {
         type: Number,

@@ -37,7 +37,7 @@ const Products = () => {
 
     const deleteProduct = async (id) => {
         try {
-            const res = await newRequest.delete(`product//delete/${id}`);
+            const res = await newRequest.delete(`product/delete/${id}`);
             if (res.status === 200) {
                 setMessage(res.data)
                 setMessageModel(true)

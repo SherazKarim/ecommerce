@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Wrapper from '../wrapper/Wrapper'
 import { CiHeart } from "react-icons/ci";
-import { newRequest } from '../utills/newRequest';
-import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 

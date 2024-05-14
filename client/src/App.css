@@ -90,6 +90,21 @@
   animation: rotate-clockwise 2s linear infinite;
 }
 
+/* popup animation */
+.popup {
+  animation: fadeIn 0.5s ease forwards;
+  /* Other styles for your popup */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 
 
 

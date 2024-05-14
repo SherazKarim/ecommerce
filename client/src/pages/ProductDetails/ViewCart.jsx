@@ -4,13 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RxCross2 } from "react-icons/rx";
 import { removeItem } from '../../app/features/productSlice';
 import { Link } from 'react-router-dom';
-import {newRequest} from "../../components/utills/newRequest"
 
 export const ViewCart = () => {
     const [cartContent, setCartContent] = useState([]);
     const dispatch = useDispatch();
     const { cartItems } = useSelector((state) => state.allCart);
-    console.log(cartItems)
     const [totalAmt, setTotalAmt] = useState("");
     const [shippingCharge, setShippingCharge] = useState("");
 
@@ -18,13 +16,9 @@ export const ViewCart = () => {
     const profileData = JSON.parse(localStorage.getItem('profileData'));
     const profile = profileData || currentUser;
 
-    // console.log("cartItems",cartItems)
     useEffect(() => {
         setCartContent(cartItems)
     }, [cartItems])
-    console.log(cartContent)
-
-    
 
     function decreaseHandler(id) {
         let testId = cartContent.map((item) => {
@@ -76,7 +70,6 @@ export const ViewCart = () => {
                 </Wrapper>
             </div>
 
-
             <Wrapper className="h-auto w-full flex flex-col overflow-x-auto shadow-md sm:rounded-lg">
                 <div className={`h-auto bg-[#fafafa] ${cartContent && cartContent.length <= 0 ? "py-20 mt-5" : "pt-20"}`}>
                     {cartContent && cartContent.length <= 0 ? <div className='flex flex-col justify-center items-center '>
@@ -126,7 +119,6 @@ export const ViewCart = () => {
 
                                     }
                                 </div>
-                                {/* <!-- Sub total --> */}
                                 <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
                                     <div className="mb-2 flex justify-between">
                                         <p className="text-gray-700">Subtotal</p>
@@ -150,7 +142,6 @@ export const ViewCart = () => {
                     }
                 </div>
             </Wrapper>
-
         </div>
     )
 }

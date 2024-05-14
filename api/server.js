@@ -10,28 +10,29 @@ const app = express()
 import stripe from 'stripe'
 import { createOrder } from './Controllers/order.controller.js'
 import ordersRoute from "./Routes/order.route.js"
+import reviewRoute from "./Routes/review.route.js"
 dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
-// app.use(cors({ origin: "https://ecommerce-76ha.vercel.app", credentials: true }))
 const corsOptions = {
-  origin: "https://ecommerce-76ha.vercel.app",
+  // origin: "https://ecommerce-76ha.vercel.app",
+  origin:'http://localhost:3000',
   credentials: true,
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
-// app.use(cors({ origin: "http://localhost:3000", credentials: true }))
 connect();
 
 app.use('/api/product', productRoute)
 app.use('/api/auth', userRoute)
 app.use("/api/orders", ordersRoute)
+app.use("/api/reviews", reviewRoute)
 app.get("/", (req, res) => {
     res.json("Hello")
 })
-const YOUR_DOMAIN = 'https://ecommerce-76ha.vercel.app';
-// const YOUR_DOMAIN = 'http://localhost:3000/';
+// const YOUR_DOMAIN = 'https://ecommerce-76ha.vercel.app';
+const YOUR_DOMAIN = 'http://localhost:3000/';
 const stripeClient = stripe(process.env.STRIPE_SECRET_KEY);
 
 app.post('/api/order/create-checkout-session', async (req, res) => { 

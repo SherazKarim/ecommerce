@@ -1,7 +1,9 @@
 import express from 'express'
-import { deleteAllOrders, getAllOrders} from '../Controllers/order.controller.js';
+import { deleteAllOrders, getAllOrders,updateOrder, deleteOrder} from '../Controllers/order.controller.js';
 
 const router = express.Router();
-router.get('/allOrder', getAllOrders)
+router.get('/getOrders', getAllOrders)
 router.delete('/delAllOrders', deleteAllOrders)
+router.put('/updateOrder/:id', updateOrder)
+router.delete("/deleteOrder/:id/orderId/:orderId", deleteOrder)
 export default router

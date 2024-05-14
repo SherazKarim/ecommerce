@@ -30,7 +30,7 @@ export const Carousel2 = () => {
                     <SwiperSlide>
                         <div className="flex lg:flex-row flex-col justify-center items-center lg:gap-x-12 gap-y-16 py-28 bg-cover bg-[url('https://img.freepik.com/free-photo/abstract-luxury-gradient-blue-background-smooth-dark-blue-with-black-vignette-studio-banner_1258-108775.jpg?size=626&ext=jpg&ga=GA1.1.901680783.1706168011&semt=ais')]">
                             <div className='relative lg:w-[50%] flex justify-end'>
-                                <div className='flex absolute left-[50%] z-10 justify-center ' data-aos="fade-down" data-aos-duration="2000">
+                                <div className='flex absolute left-[50%] z-10 justify-center polygon' data-aos="fade-down" data-aos-duration="2000">
                                     <div className='bg-red-700 rounded-[100%] w-24 h-24 flex flex-col items-center justify-center animate-spin-slow origin-center'>
                                         <h1 className='text-white font-extrabold z-30 text-[1.3rem]'>57%</h1>
                                         <span className='text-white'>Offer</span>

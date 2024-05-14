@@ -5,11 +5,8 @@ import Wrapper from '../../components/wrapper/Wrapper';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItem } from '../../app/features/productSlice';
-import { newRequest } from '../../components/utills/newRequest';
-import axios from 'axios';
 export const Cart = ({ openCart, setOpenCart }) => {
     const { cartItems } = useSelector((state) => state.allCart)
-    console.log(cartItems)
     const [totalAmt, setTotalAmt] = useState("");
     const [shippingCharge, setShippingCharge] = useState("");
 
@@ -48,24 +45,6 @@ export const Cart = ({ openCart, setOpenCart }) => {
         });
         setTotalAmt(price);
     }, [cartItems]);
-
-    // console.log('cartItems',cartItems)
-    const handleCheckOut = async () => {
-        setOpenCart(true)
-        try {
-            const res = await newRequest.post("order/create-checkout-session", {
-                items: cartItems,
-                shippingCharges: shippingCharge,
-                formData: null
-            });
-            const data = res.data;
-            if (data.url) {
-                window.location = data.url;
-            }
-        } catch (err) {
-            console.error("Error during checkout:", err);
-        }
-    };
 
     return (
         <>
@@ -115,7 +94,7 @@ export const Cart = ({ openCart, setOpenCart }) => {
                                 View Cart
                             </button>
                         </Link>
-                        <Link className='testi' to='/placeorder'>
+                        <Link className='testi' to='/placeorder' state={{totalAmt:totalAmt}}>
                             <button className='bg-red-700 text-white text-sm py-3 px-6 rounded-full hover:bg-green-500'>
                                 Check Out
                             </button>

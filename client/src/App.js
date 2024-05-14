@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter, Routes, Route, useParams, useLocation } from "react-router-dom"
-import { itemDetails, singleItem } from './app/features/productSlice';
+import { itemDetails } from './app/features/productSlice';
 import { useDispatch } from 'react-redux'
 import { newRequest } from './components/utills/newRequest';
 import {
@@ -30,6 +30,7 @@ import SideBar from './Dashbord/sidebar/SideBar';
 import Admin from './Dashbord/home/Home';
 import PlaceOrder from "./pages/placeOrder/PlaceOrder"
 import Aos from 'aos';
+import MyOrders from './pages/myOrders/MyOrders';
 function App() {
   const [openSideBar, setOpenSideBar] = useState(false)
   const navbarRef = useRef(null);
@@ -47,6 +48,7 @@ function App() {
 
   useEffect(() => {
     fetchData()
+    Aos.init({duration:2000});
   }, [])
 
   useEffect(() => {
@@ -109,6 +111,7 @@ function App() {
             <Route path='/success' element={<Success />} />
             <Route path='/shopNow/' element={<Shop />} />
             <Route path='/placeorder' element={<PlaceOrder />} />
+            <Route path='/myorders' element={<MyOrders />} />
             <Route path='/dashboard' element={<Admin />} />
           </Routes>
           <Footer />

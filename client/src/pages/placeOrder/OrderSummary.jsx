@@ -1,4 +1,5 @@
 import React from 'react'
+import '../../App.css'
 
 const OrderSummary = ({ cartItems, totalAmt, handleSubmit }) => {
   return (
@@ -27,7 +28,7 @@ const OrderSummary = ({ cartItems, totalAmt, handleSubmit }) => {
     }
     <div className="flex justify-center items-center gap-2">
         <p className="border py-2 px-1 rounded-[4px]">
-          Subtotle: <span>
+          Subtotal: <span>
             {totalAmt}
           </span>
         </p>

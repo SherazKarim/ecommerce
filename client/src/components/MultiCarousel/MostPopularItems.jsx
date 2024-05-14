@@ -9,6 +9,7 @@ import 'swiper/css/pagination';
 import { EffectFade, A11y, Navigation, Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
 const MostPopularItems = () => {
     const getData = useSelector((state)=>state.allCart.cart)
     const swiperRef = useRef(null);
@@ -61,11 +62,11 @@ const MostPopularItems = () => {
                     {
                         getData && getData.slice(0, 2).map((item) => (
                             <div key={item._id} className='flex w-full gap-4 '>
-                                <div className='self-start w-24'>
+                                <Link onClick={()=>(window.scroll(0,0))} to={`product/${item._id}`}  className='self-start w-24'>
                                     <img src={item.image[0]} />
-                                </div>
+                                </Link>
                                 <div className='flex flex-col justify-center'>
-                                    <Link to={`product/${item._id}`} className='font-bold text-sm text-start cursor-pointer hover:text-blue-600'>{item.title}</Link>
+                                    <Link onClick={()=>(window.scroll(0,0))} to={`product/${item._id}`} className='font-bold text-sm text-start cursor-pointer hover:text-blue-600'>{item.title}</Link>
                                     <span className='text-xs font-bold text-gray-500 text-start'>{item.price}</span>
                                     <span className='text-xs font-bold text-gray-500 text-start'>{item.subTitle}</span>
                                 </div>
@@ -77,9 +78,9 @@ const MostPopularItems = () => {
                     {
                          getData && getData.slice(3, 5).map((item) => (
                             <div key={item._id} className='flex gap-4 w-full bg-white'>
-                                <div className='self-start w-24'>
+                                <Link onClick={()=>(window.scroll(0,0))} to={`product/${item._id}`} className='self-start w-24'>
                                     <img src={item.image[0]} />
-                                </div>
+                                </Link>
                                 <div className='flex flex-col justify-center'>
                                 <Link to={`product/${item._id}`} className='font-bold text-sm text-start cursor-pointer hover:text-blue-600'>{item.title}</Link>
                                     <span className='text-xs font-bold text-gray-500 text-start'>{item.price}</span>

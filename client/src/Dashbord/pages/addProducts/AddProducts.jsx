@@ -62,7 +62,7 @@ const AddProduct = () => {
         <form className='w-full border grid grid-cols-12 gap-4 p-3 rounded-[4px]' onSubmit={handleSubmit}>
           <div className="flex flex-col items-start gap-y-2 sm:col-span-6 col-span-12">
             <label htmlFor="title" className='text-[16px] font-[500] text-gray-600/[0.90]'>Product Name</label>
-            <input type="text" id='title' value={title} name='title' className='border-gray-100 rounded-[4px] w-full px-2 py-3 text-[400]' placeholder='add subtitle' onChange={onChange} />
+            <input type="text" id='title' value={title} name='title' className='border-gray-100 rounded-[4px] w-full px-2 py-3 text-[400]' placeholder='product name' onChange={onChange} />
           </div>
           <div className="flex flex-col items-start gap-y-2 sm:col-span-6 col-span-12">
             <label htmlFor="subTitle" className='text-[16px] font-[500] text-gray-600/[0.90]'>Brand</label>
